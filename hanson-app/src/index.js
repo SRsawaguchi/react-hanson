@@ -105,10 +105,13 @@ class Game extends React.Component {
         return acc + `(${col}, ${row}) `;
       }, '');
 
+      const isCurrentMove = (step === current);
+      const className = isCurrentMove ? 'bold' : '';
+
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          <span>{boardSummary}</span>
+          <span className={className}>{boardSummary}</span>
         </li>
       );
     });
