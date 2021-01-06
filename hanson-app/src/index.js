@@ -95,11 +95,22 @@ class Game extends React.Component {
         'Go to move #' + move :
         'Go to game start';
 
-        return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          </li>
-        );
+      const boardSummary = step.squares.reduce((acc, val, idx) => {
+        if (!val) {
+          return acc;
+        }
+
+        const row = Math.floor(idx / 3);
+        const col = idx % 3;
+        return acc + `(${col}, ${row}) `;
+      }, '');
+
+      return (
+        <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <span>{boardSummary}</span>
+        </li>
+      );
     });
 
     return (
